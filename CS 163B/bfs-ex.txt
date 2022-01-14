@@ -1,0 +1,13 @@
+10 11
+Frankfurt Mannheim Wurzburg Stuttgart Kassel Nurnberg Erfurt Karlsruhe Augsburg Munchen
+Frankfurt  Mannheim
+Frankfurt Wurzburg
+Frankfurt Kassel
+Mannheim Karlsruhe
+Wurzburg Erfurt 
+Wurzburg Nurnberg
+Stuttgart Nurnberg
+Karlsruhe Augsburg
+Augsburg Munchen
+Nurnberg Munchen
+Kassel Munchen

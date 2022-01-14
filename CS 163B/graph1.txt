@@ -1,0 +1,22 @@
+3 2
+a b c
+a b
+a c
+
+
+4 2
+a b c d
+a b
+a c
+
+3 3
+a b c
+a b
+b c
+c a
+
+4 3
+a b c d
+a b
+b c
+c a

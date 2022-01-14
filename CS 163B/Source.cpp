@@ -1,38 +1,104 @@
 #include <iostream>
 #include "graph.h"
+#include <string>
+#include <fstream>
+#include "BFS.h"
+#include "DFS.h"
 
-int main() {
-	graph<int> G;
+using namespace std;
 
-	for (int i = 0; i < 4; i++) {
-		G.addVertex(i);
-	}
+int main()
+{
+    graph<int> G;
 
-	G.addEdge(0, 1);
-	G.addEdge(1, 2);
-	G.addEdge(2, 3);
-	G.addEdge(3, 0);
-	G.addEdge(0, 2);
+    for (int i = 0; i < 4; ++i)
+        G.addVertex(i);
 
-	std::cout << G.n() << std::endl;
-	std::cout << G.m() << std::endl;
-	std::cout << G.deg(0) << ", " << G.deg(1) << std::endl;
+    G.addEdge(0, 1);
+    G.addEdge(1, 2);
+    G.addEdge(2, 3);
+    G.addEdge(3, 0);
+    G.addEdge(0, 2);
 
-	for (auto v : G.V())
-		std::cout << v << " ";
-	std::cout << std::endl;
+    cout << G.n() << endl;
+    cout << G.m() << endl;
+    cout << G.deg(0) << ", " << G.deg(1) << endl;
 
-	G.removeEdge(0, 2);
+    for (auto v : G.V())
+        cout << v << " ";
+    cout << endl;
 
-	for (auto v : G.Adj(0))
-		std::cout << v << " ";
-	std::cout << std::endl;
+    G.removeEdge(0, 2);
 
-	std::cout << G.m() << std::endl;
+    for (auto v : G.Adj(0))
+        cout << v << " ";
+    cout << endl;
 
-	std::cout << G.n() << std::endl;
-	std::cout << G.m() << std::endl;
-	std::cout << G.deg(0) <<", "<< G.deg(1) << std::endl;
+    cout << G.m() << endl;
 
-	return 0;
+
+    cout << "Graph g: " << endl;
+    cout << G << endl;
+
+
+
+
+    ifstream is("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\cyclic_connected.txt");
+    if (is.fail())
+        exit(1);
+
+
+    graph<string> H;
+
+    cout << "Enter H: ";
+    is >> H;
+
+    cout << "Read: " << endl;
+    cout << H << endl;
+
+
+    cout << "is connected ? : " << H.isConnected() << endl;
+    cout << "is acyclic ? : " << H.isAcyclic() << endl;
+
+    cout << "ncc = " << H.ncc() << endl;
+
+
+
+    cout << "BFS example: " << endl;
+
+    ifstream is2("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\bfs-ex.txt");
+    if (is2.fail())
+        exit(1);
+
+
+    graph<string> cities;
+    is2 >> cities;
+
+    unordered_map<string, size_t> D;
+    unordered_map<string, string> P;
+    BFS<graph<string>> B(cities);
+    B.bfs_one(cities, "Frankfurt", D, P);
+
+    for (auto& p : D)
+        cout << p.first << ": " << p.second << endl;
+
+    for (auto& p : P)
+        cout << p.first << ": " << p.second << endl;
+
+
+    cout << "DFS example: " << endl;
+
+    ifstream is3("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\dfs-ex.txt");
+    if (is3.fail())
+        exit(1);
+
+    graph<string> X;
+    is3 >> X;
+    cout << X << endl;
+    DFS<graph<string>> Y(X);
+
+
+
+
+    return 0;
 }
