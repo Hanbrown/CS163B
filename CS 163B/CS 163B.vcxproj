@@ -141,13 +141,22 @@
   <ItemGroup>
     <ClInclude Include="BFS.h" />
     <ClInclude Include="DFS.h" />
+    <ClInclude Include="Doublet.h" />
     <ClInclude Include="graph.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="graph1.txt" />
+    <Text Include="input\acyclic_connected.txt" />
+    <Text Include="input\acyclic_disconnected.txt" />
+    <Text Include="input\bfs-ex.txt" />
+    <Text Include="input\cyclic_connected.txt" />
+    <Text Include="input\cyclic_disconnected.txt" />
+    <Text Include="input\dfs-ex.txt" />
+    <Text Include="input\graph1.txt" />
+    <Text Include="input\knuth.txt" />
+    <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="assn1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

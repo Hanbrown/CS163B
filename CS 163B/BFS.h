@@ -5,6 +5,7 @@
 #include <queue>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 template <class GRAPH>
 
@@ -67,6 +68,36 @@ public:
 				if (D.count(w) == 0)  // not visited
 				{
 					D[w] = 1 + D[f];
+					P[w] = f;
+					Q.push(w);
+				}
+		}
+	}
+
+	// Shortest path assignment (1/14/22)
+	// A modified version of bfs_one to find shortest paths
+	void bfs_path(GRAPH G,
+		const Vertex v,                                // start vertex
+		std::unordered_map<Vertex, std::vector<Vertex>>& paths,   // Path from start vertex to dest vertex
+		std::unordered_map<Vertex, Vertex>& P)        // parent in path back to start vertex
+	{
+		std::queue<Vertex> Q;
+
+		P[v] = v;
+		paths[v] = std::vector<Vertex>(); // Instead of distances, log vectors (Paths)
+		paths[v].push_back(v); // Initialize with current vertex
+		Q.push(v);
+
+		while (!Q.empty())
+		{
+			Vertex f = Q.front();
+			Q.pop();
+
+			for (auto w : G.Adj(f))
+				if (paths.count(w) == 0)  // not visited
+				{
+					paths[w] = paths[f]; // Instead of adding one, push the current vertex to back
+					paths[w].push_back(w);
 					P[w] = f;
 					Q.push(w);
 				}

@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <cassert> // Remember, assert() accepts a condition and
 				   // throws an error if that condition isn't met.
+#include "BFS.h"
 
 template <class GRAPH> class BFS;
 
@@ -33,6 +34,9 @@ public:
 	size_t n() const {
 		return _t.size();
 	}
+	size_t vertex_count() const {
+		return _t.size();
+	}
 	
 	/**
 	* Return number of edges in the graph
@@ -52,9 +56,23 @@ public:
 		// So we divide ans by two to get the number of edges.
 		return ans / 2;
 	}
+	size_t edge_count() const {
+		std::size_t ans(0);
+		for (auto p : _t)
+			ans += p.second.size();
+		return ans / 2;
+	}
 
 	// Return all vertices
 	VertexSet V() const {
+		VertexSet ans;
+
+		for (auto p : _t)
+			ans.insert(p.first);
+
+		return ans;
+	}
+	VertexSet vertices() const {
 		VertexSet ans;
 
 		for (auto p : _t)
@@ -127,6 +145,36 @@ public:
 	bool isTree() const {
 		return (isConnected() && isAcyclic());
 	}
+
+	// Shortest path assignment (1/14/22)
+	// Return a vector that shows the shortest path between two nodes in this graph
+	Path shortest_path(const Vertex& a, const Vertex & b) {
+		
+		// This will contain the route, including the destination node
+		Path route;
+
+		// If either vertex doesn't exist, throw error.
+		assert(isVertex(a) && isVertex(b));
+		
+		// Utility variable declarations
+		std::unordered_map<T, Path> paths;
+		std::unordered_map<T, T> parents;
+		BFS<graph<T>> search_obj(*this);
+
+		// Build BFS object
+		search_obj.bfs_path(*this, a, paths, parents);
+
+		// If no path exists, return an empty Path
+		if (paths.find(b) == paths.end())
+			return route;
+
+		// Get the path we want and return
+		route = paths.at(b);
+		
+		return route;
+
+	}
+
 
 
 private:

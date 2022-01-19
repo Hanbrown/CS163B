@@ -43,7 +43,7 @@ int main()
 
 
 
-    ifstream is("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\cyclic_connected.txt");
+    ifstream is("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\input\\cyclic_connected.txt");
     if (is.fail())
         exit(1);
 
@@ -66,7 +66,7 @@ int main()
 
     cout << "BFS example: " << endl;
 
-    ifstream is2("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\bfs-ex.txt");
+    ifstream is2("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\input\\bfs-ex.txt");
     if (is2.fail())
         exit(1);
 
@@ -85,10 +85,21 @@ int main()
     for (auto& p : P)
         cout << p.first << ": " << p.second << endl;
 
+    graph<string>::Path dst = cities.shortest_path("Nurnberg", "Erfurt");
+    //cout << dst << endl;
+
+    cout << "[";
+    for (size_t k = 0; k < dst.size(); k++) {
+        cout << dst[k] << ", ";
+    }
+    cout << "]";
+
+    cout << endl << endl;
+
 
     cout << "DFS example: " << endl;
 
-    ifstream is3("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\dfs-ex.txt");
+    ifstream is3("C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\input\\dfs-ex.txt");
     if (is3.fail())
         exit(1);
 
