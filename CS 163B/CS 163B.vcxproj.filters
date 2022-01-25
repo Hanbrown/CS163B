@@ -27,6 +27,9 @@
     <ClInclude Include="Doublet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\graph1.txt" />
@@ -36,11 +39,11 @@
     <Text Include="input\cyclic_connected.txt" />
     <Text Include="input\cyclic_disconnected.txt" />
     <Text Include="input\dfs-ex.txt" />
-    <Text Include="input\test.txt" />
     <Text Include="input\knuth.txt" />
+    <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn1.cpp">
+    <ClCompile Include="assn2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

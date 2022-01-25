@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bead.h" />
     <ClInclude Include="BFS.h" />
     <ClInclude Include="DFS.h" />
     <ClInclude Include="Doublet.h" />
@@ -156,7 +157,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn1.cpp" />
+    <ClCompile Include="assn2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

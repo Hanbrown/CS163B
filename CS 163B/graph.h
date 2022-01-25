@@ -127,6 +127,19 @@ public:
 		_t[w].erase(v);
 	}
 
+	void removeVertex(const T& v) {
+		if (!isVertex(v))
+			return;
+
+		// Remove linked edges
+		for (auto nbr : Adj(v)) {
+			removeEdge(v, nbr);
+		}
+
+		// Remove vertex
+		_t.erase(v);
+	}
+
 	bool isConnected() const {
 		BFS<graph> B(*this); // Construct a Breadth-first Search object out of this graph
 		return (B.ncc() == 1); // If every island is linked together, the graph is connected.
