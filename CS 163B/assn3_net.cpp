@@ -1,14 +1,16 @@
-#ifndef GRAPH_H
-#define GRAPH_H
-
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+//////////////////////////////////////////   Graph.h   ///////////////////////////////////////////////////
+
 #include <algorithm>
 #include <unordered_set>
 #include <unordered_map>
 #include <cassert> // Remember, assert() accepts a condition and
 				   // throws an error if that condition isn't met.
 #include <cmath>
-#include "BFS.h"
 
 template <class GRAPH> class BFS;
 
@@ -39,7 +41,7 @@ public:
 	size_t vertex_count() const {
 		return _t.size();
 	}
-	
+
 	/**
 	* Return number of edges in the graph
 	* NOTE: With maps, each element is a pair (a, b)
@@ -55,7 +57,7 @@ public:
 			// Check for self-loops
 			sl_current = std::count(p.second.begin(), p.second.end(), p.first);
 			self_loops += sl_current;
-			
+
 			ans += p.second.size() - sl_current;
 
 		}
@@ -64,7 +66,7 @@ public:
 		// if there's an edge (a, b), we saw this edge while
 		// going through both vertex "a" and vertex "b".
 		// So we divide ans by two to get the number of edges.
-		return ( (ans / 2) + self_loops );
+		return ((ans / 2) + self_loops);
 	}
 	size_t edge_count() const {
 		return m();
@@ -137,7 +139,7 @@ public:
 	}
 
 	void removeEdge(const T& v, const T& w) {
-		if ( !isEdge(v, w) )
+		if (!isEdge(v, w))
 			return;
 
 		if (v == w) {
@@ -196,14 +198,14 @@ public:
 
 	// Shortest path assignment (1/14/22)
 	// Return a vector that shows the shortest path between two nodes in this graph
-	Path shortest_path(const Vertex& a, const Vertex & b) {
-		
+	Path shortest_path(const Vertex& a, const Vertex& b) {
+
 		// This will contain the route, including the destination node
 		Path route;
 
 		// If either vertex doesn't exist, throw error.
 		assert(isVertex(a) && isVertex(b));
-		
+
 		// Utility variable declarations
 		std::unordered_map<T, Path> paths;
 		std::unordered_map<T, T> parents;
@@ -218,7 +220,7 @@ public:
 
 		// Get the path we want and return
 		route = paths.at(b);
-		
+
 		return route;
 
 	}
@@ -231,53 +233,159 @@ private:
 	std::unordered_map<Vertex, VertexSet> _t;
 };
 
-// Overload output operator
-// Takes in the output stream and the graph (don't modify the graph)
-template <class T>
-std::ostream& operator << (std::ostream& os, const graph<T>& G) {
-	os << G.n() << " " << G.m() << std::endl; // Ouput num of vertices and num of edges
+//////////////////////////////////////////   Eulerian.h   ///////////////////////////////////////////////////
 
-	// Output all vertices
-	for (auto v : G.V())
-		os << v << " ";
+#include <stack>
 
-	os << std::endl;
+template <class GRAPH>
+class Eulerian
+{
+public:
 
-	// For every vertex
-	for (auto v : G.V()) {
-		// Get neighbors
-		for (auto w : G.Adj(v)) {
-			// Prevent double-counting. = is there so we count self-loops
-			if (v <= w) {
-				os << v << " " << w << std::endl;
+	typedef typename GRAPH::Vertex Vertex;
+	typedef typename GRAPH::Path Path;
+
+	struct node {
+		Vertex a;
+		Vertex b;
+	};
+
+	typedef typename std::vector<node> EPath;
+
+	Eulerian(const GRAPH& G)
+	{
+		_has_cycle = true;
+
+		for (auto& v : G.fn())
+		{
+			if (
+				G.deg(v.first) & 1
+				&&
+				std::find(v.second.begin(), v.second.end(), v.first) == v.second.end()
+				)
+			{
+				_has_cycle = false;
+				break;
 			}
 		}
+		_G = G;
+
 	}
 
-	return os;
+	EPath ec()
+	{
+		if (!_has_cycle)
+			return EPath();
+
+		std::vector<node> ans;
+
+		std::stack<Vertex> S;
+
+		Vertex v = *(_G.V().begin());   // first vertex in V()
+		S.push(v);
+
+		while (!S.empty())
+		{
+			Vertex s = S.top();
+			if (_G.deg(s) != 0)
+			{
+				Vertex w = *(_G.Adj(s).begin());  // first neighbor
+				_G.removeEdge(s, w);
+				S.push(w);
+			}
+			else // back to s
+			{
+				S.pop();
+
+				Vertex w;
+				if (!S.empty()) {
+					w = S.top();
+
+					struct node tmp = { s, w };
+					ans.push_back(tmp);
+				}
+			}
+		}
+
+		return ans;
+
+
+	}
+private:
+
+	bool _has_cycle;  // true if the input graph has an Eulerian cycle
+	GRAPH _G;
+};
+
+//////////////////////////////////////////   Main   ///////////////////////////////////////////////////
+
+// Filepath to test input
+#define path "C:\\Users\\Pranav\\source\\repos\\CS163B\\CS 163B\\input\\test.txt"
+
+using namespace std;
+
+int main()
+{
+    //std::ifstream is(path);
+
+    graph<int> colors;
+
+    // Number of test cases; number of beads in chain
+    size_t rounds, beads;
+	cin >> rounds;
+
+    size_t i, j, k;
+    int a, b; // Placeholders for each bead
+
+    // output
+    std::string output = "";
+
+    for (i = 0; i < rounds; i++) {
+
+        cin >> beads;
+
+        for (j = 0; j < beads; j++) {
+            // Get colors
+			cin >> a;
+			cin >> b;
+
+            // Add to graph if they don't already exist
+            colors.addVertex(a);
+            colors.addVertex(b);
+
+            // Add edge between them
+            colors.addEdge(a, b);
+        }
+        colors.edge_count();
+        
+        //cout << colors << endl << "---" << endl;
+
+        // Now that graph is built, find Eulerian path
+        Eulerian<graph<int>> path_obj(colors);
+
+        Eulerian<graph<int>>::EPath chain;
+        chain = path_obj.ec();
+
+        // Output
+        output += "Case #" + to_string(i+1) + "\n";
+
+        if (chain.size() > 0) {
+            for (k = 0; k < chain.size(); k++) {
+                output += to_string(chain[k].a) + " " + to_string(chain[k].b) + "\n";
+            }
+        }
+        else {
+            output += "some beads may be lost\n";
+        }
+
+        output += "\n";
+
+        // Empty graph for reuse
+        colors.clear();
+
+    }
+
+    cout << output;
+
+    return 0;
 }
-
-// Allows us to read in a graph from a file
-template <class T>
-std::istream& operator >> (std::istream& is, graph<T>& G) {
-
-	std::size_t n, m;
-	is >> n >> m;
-
-	//G = graph<T>();
-
-	T v, w;
-	for (std::size_t i = 0; i < n; ++i) {
-		is >> v;
-		G.addVertex(v);
-	}
-
-	for (std::size_t i = 0; i < m; ++i) {
-		is >> v >> w;
-		G.addEdge(v, w);
-	}
-
-	return is;
-}
-
-#endif // !GRAPH_H

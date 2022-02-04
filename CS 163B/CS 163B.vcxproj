@@ -139,10 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bead.h" />
     <ClInclude Include="BFS.h" />
     <ClInclude Include="DFS.h" />
     <ClInclude Include="Doublet.h" />
+    <ClInclude Include="Eulerian.h" />
     <ClInclude Include="graph.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +157,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn2.cpp" />
+    <ClCompile Include="assn3_net.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

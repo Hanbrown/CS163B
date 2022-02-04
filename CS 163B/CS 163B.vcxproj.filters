@@ -27,7 +27,7 @@
     <ClInclude Include="Doublet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bead.h">
+    <ClInclude Include="Eulerian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -43,7 +43,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn2.cpp">
+    <ClCompile Include="assn3_net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
