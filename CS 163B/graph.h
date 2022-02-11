@@ -80,16 +80,7 @@ public:
 		return ans;
 	}
 	VertexSet vertices() const {
-		VertexSet ans;
-
-		for (auto p : _t)
-			ans.insert(p.first);
-
-		return ans;
-	}
-
-	std::unordered_map<Vertex, VertexSet> fn() const {
-		return _t;
+		return V();
 	}
 
 	// Is vertex v in this graph?

@@ -30,6 +30,9 @@
     <ClInclude Include="Eulerian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="digraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\graph1.txt" />
@@ -41,9 +44,13 @@
     <Text Include="input\dfs-ex.txt" />
     <Text Include="input\knuth.txt" />
     <Text Include="input\test.txt" />
+    <Text Include="input\input1.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assn3_net.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="assn4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -27,9 +27,9 @@ public:
         for (auto& v : G.fn())
         {
             if (
-                G.deg(v.first) & 1
+                G.deg(v.first) & 1 // Odd degree
                 &&
-                std::find(v.second.begin(), v.second.end(), v.first) == v.second.end()
+                std::find(v.second.begin(), v.second.end(), v.first) == v.second.end() // No self-loops
                 )
             {
                 _has_cycle = false;
@@ -43,7 +43,7 @@ public:
     EPath ec()
     {
         if (!_has_cycle)
-            return EPath();
+            return EPath(); // Empty path
 
         std::vector<node> ans;
 
