@@ -162,9 +162,9 @@ public:
 		_t.clear();
 	}
 
-	Vertex begin() {
+	/*Vertex begin() {
 		return *(_t.begin());
-	}
+	}*/
 
 	bool isConnected() const {
 		BFS<graph> B(*this); // Construct a Breadth-first Search object out of this graph
@@ -216,7 +216,7 @@ public:
 
 
 
-private:
+protected:
 
 	// T is a vertex, VertexSet is an edge
 	std::unordered_map<Vertex, VertexSet> _t;

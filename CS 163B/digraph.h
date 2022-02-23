@@ -4,6 +4,7 @@
 #define DIGRAPH_H
 
 #include "graph.h"
+#include "DFS.h"
 
 template <class T> class DFS;
 
@@ -13,6 +14,23 @@ class digraph : public graph<T>
 
 public:
     typedef T Vertex;
+    typedef std::vector<T> Path; // Path
+
+    digraph reverse() const
+    {
+        digraph ans;
+
+        for (auto& v : graph<Vertex>::V())
+            ans.addVertex(v);
+
+        for (auto& v : graph<Vertex>::V())
+        {
+            for (auto& w : graph<Vertex>::Adj(v))
+                ans.addEdge(w, v);
+        }
+
+        return ans;
+    }
 
     std::size_t m() const
     {
@@ -58,6 +76,29 @@ public:
     {
         DFS<digraph<Vertex>> D(*this);
         return D.isDag();
+    }
+
+    // Rudimentary "return source vertices" function. Doesn't work with self-loops and duplicate edges
+   Path sources() {
+        Path srcs;
+
+        for (auto& v : graph<T>::V()) {
+            if (indeg(v) == 0)
+                srcs.push_back(v);
+        }
+
+        return srcs;
+    }
+
+    Path sinks() {
+        Path srcs;
+
+        for (auto& v : graph<T>::V()) {
+            if (outdeg(v) == 0)
+                srcs.push_back(v);
+        }
+
+        return srcs;
     }
 
 

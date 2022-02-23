@@ -145,6 +145,8 @@
     <ClInclude Include="Doublet.h" />
     <ClInclude Include="Eulerian.h" />
     <ClInclude Include="graph.h" />
+    <ClInclude Include="KSCC.h" />
+    <ClInclude Include="TSCC.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\acyclic_connected.txt" />
@@ -159,8 +161,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn3_net.cpp" />
-    <ClCompile Include="assn4.cpp" />
+    <ClCompile Include="assn6_net.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
