@@ -145,6 +145,7 @@
     <ClInclude Include="Doublet.h" />
     <ClInclude Include="Eulerian.h" />
     <ClInclude Include="graph.h" />
+    <ClInclude Include="wgraph.h" />
     <ClInclude Include="KSCC.h" />
     <ClInclude Include="TSCC.h" />
   </ItemGroup>
@@ -161,7 +162,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn6_net.cpp" />
+    <ClCompile Include="assn7.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

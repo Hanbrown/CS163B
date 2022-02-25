@@ -5,7 +5,6 @@ Engineering 3
 2
 OConnor Engineering 4
 OConnor Kenna 2
-*
 4
 OConnor 1
 Kenna -1
@@ -16,7 +15,6 @@ OConnor Kenna 5
 OConnor Engineering 3
 Kenna Engineering 6
 Engineering Daly 2
-*
 7
 b1 32
 b2 29
@@ -33,7 +31,6 @@ b4 b5 40
 b4 b6 51
 b4 b7 46
 b6 b7 25
-*
 6
 b1 -1
 b2 2

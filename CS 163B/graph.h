@@ -12,6 +12,18 @@
 
 template <class GRAPH> class BFS;
 
+template <class T>
+struct Edge
+{
+	T a, b;
+
+	Edge() {}
+
+	Edge(const T& a, const T& b) : a(a), b(b)
+	{}
+
+};
+
 /*
 * This graph class represents graphs as an adjacency list.
 * Each element is a tuple consisting of a vertex and all its edges
@@ -269,6 +281,21 @@ std::istream& operator >> (std::istream& is, graph<T>& G) {
 	}
 
 	return is;
+}
+
+template <class T>
+bool operator <(const Edge<T>& e1,
+	const Edge<T>& e2)
+{
+
+	return ((e1.a < e2.a) || ((e1.a == e2.a) && (e1.b < e2.b)));
+}
+
+template <class T>
+std::ostream& operator << (std::ostream& os, const Edge<T>& e)
+{
+	os << "{" << e.a << ", " << e.b << "}";
+	return os;
 }
 
 #endif // !GRAPH_H
