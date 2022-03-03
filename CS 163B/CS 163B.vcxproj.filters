@@ -42,6 +42,12 @@
     <ClInclude Include="wgraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input\graph1.txt" />
@@ -56,7 +62,7 @@
     <Text Include="input\input1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn7.cpp">
+    <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

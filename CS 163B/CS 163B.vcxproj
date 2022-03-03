@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BFS.h" />
+    <ClInclude Include="dary.h" />
     <ClInclude Include="DFS.h" />
     <ClInclude Include="digraph.h" />
     <ClInclude Include="Doublet.h" />
     <ClInclude Include="Eulerian.h" />
     <ClInclude Include="graph.h" />
+    <ClInclude Include="network.h" />
     <ClInclude Include="wgraph.h" />
     <ClInclude Include="KSCC.h" />
     <ClInclude Include="TSCC.h" />
@@ -162,7 +164,7 @@
     <Text Include="input\test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="assn7.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
