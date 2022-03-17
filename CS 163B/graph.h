@@ -49,7 +49,7 @@ public:
 		return _t.size();
 	}
 	size_t vertex_count() const {
-		return _t.size();
+		return n();
 	}
 	
 	/**

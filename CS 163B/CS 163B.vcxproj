@@ -160,6 +160,9 @@
     <Text Include="input\dfs-ex.txt" />
     <Text Include="input\graph1.txt" />
     <Text Include="input\input1.txt" />
+    <Text Include="input\input2.txt" />
+    <Text Include="input\input3.txt" />
+    <Text Include="input\input4.txt" />
     <Text Include="input\knuth.txt" />
     <Text Include="input\test.txt" />
   </ItemGroup>

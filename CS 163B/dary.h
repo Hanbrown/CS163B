@@ -50,7 +50,7 @@ public:
         while (i > 0)
         {
             std::size_t parent = (i - 1) / _d;
-            if (_data[i] < _data[parent])
+            if (_data[i].second < _data[parent].second)
             {
                 swap(_data[i], _data[parent]);
                 _l[_data[i]] = i;
@@ -66,9 +66,15 @@ public:
 
     void decrease_key(const T& x, const T& newx)
     {
-
+        std::cout << *this << std::endl;
         // new key is smaller than old key;  old key is in heap; new key is not yet in heap
-        assert(newx < x&& _l.count(x) != 0 && _l.count(newx) == 0);
+        assert(newx.second < x.second);
+        //assert(_l.count(x) != 0);
+        assert(_l.count(newx) == 0);
+
+        if (_l.count(x) == 0) {
+            std::cout << "reached\n"; // XXX
+        }
 
         std::size_t i = _l.at(x);
         _data[i] = newx;
@@ -76,7 +82,7 @@ public:
         _l[newx] = i;
 
 
-        while (i > 0 && _data[i] < _data[(i - 1) / _d])
+        while (i > 0 && _data[i].second < _data[(i - 1) / _d].second)
         {
             std::size_t parent = (i - 1) / _d;
 
@@ -125,6 +131,10 @@ public:
         }
     }
 
+    std::vector<T> data() const {
+        return _data;
+    }
+
 private:
 
     std::size_t _n;                   // number of elements in heap
@@ -135,7 +145,17 @@ private:
 
 
 
-
 };
+
+template <class T>
+std::ostream& operator << (std::ostream& os, const dary_heap<T> G)
+{
+    for (auto& v : G.data())
+        os << v.first << " " << v.second << " | ";
+
+
+
+    return os;
+}
 
 #endif // DARY_H

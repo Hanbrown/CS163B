@@ -60,6 +60,9 @@
     <Text Include="input\knuth.txt" />
     <Text Include="input\test.txt" />
     <Text Include="input\input1.txt" />
+    <Text Include="input\input2.txt" />
+    <Text Include="input\input3.txt" />
+    <Text Include="input\input4.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp">
